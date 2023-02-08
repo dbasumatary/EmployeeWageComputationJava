@@ -1,38 +1,38 @@
 package com.employeewageproblem;
-/*Program to calculate wages till total 100 working hours and 20 days is reached*/
+/*Program to refactor the code using Class method to compute Employee Wage*/
 public class EmployeeWageComputation {
-    public static final int IS_PART_TIME = 1;
-    public static final int IS_FULL_TIME = 2;
-    public static final int EMP_RATE_PER_HOUR = 20;
-    public static final int NUM_OF_WORKING_DAYS = 20;
-    public static final int MAX_HRS_IN_MONTH = 100;
-    public static void main(String[] args) {
-        //Variables
-        int totalEmployeeWage;
-        int totalEmployeeHours = 0;
-        int totalWorkingDays = 0;
+    public static void totalWage(){                       //create a new method
+        final int IS_PART_TIME = 1;
+        final int IS_FULL_TIME = 2;
+        final int EMP_RATE_PER_HOUR = 20;
+        final int NUM_OF_WORKING_DAYS = 20;
+        final int NUM_OF_WORKING_HRS = 100;
+        //variables
+        int totalEmployeeWage = 0;
+        int employeeHours;
+        System.out.printf("%5s     %5s   %5s   %5s\n", "Day", "Working hours", "Total working hours", "Wage");
         // Computation
-        while (totalEmployeeHours <= MAX_HRS_IN_MONTH && totalWorkingDays < NUM_OF_WORKING_DAYS) {
-            int employeeHours;
-            totalWorkingDays++;
-            int empCheck = (int) Math.floor(Math.random() * 10) % 3;
-            switch (empCheck) {
+        for (int day = 1, totalWorkingHrs = 0; day <= NUM_OF_WORKING_DAYS
+                && totalWorkingHrs < NUM_OF_WORKING_HRS; day++, totalWorkingHrs += employeeHours){
+            int empCheck = (int) Math.floor(Math.random() * 100) % 3;
+            switch (empCheck){
                 case IS_FULL_TIME:
                     employeeHours = 8;
-                    System.out.println("Day " + totalWorkingDays + ": Employee is present full time");
                     break;
                 case IS_PART_TIME:
                     employeeHours = 4;
-                    System.out.println("Day " + totalWorkingDays + ": Employee is present full time");
                     break;
                 default:
                     employeeHours = 0;
-                    System.out.println("Day " + totalWorkingDays + ": Employee is present full time");
+                    break;
             }
-            totalEmployeeHours += employeeHours;
-            System.out.println("Day " + totalWorkingDays + ": Employee Working Hours: " + employeeHours);
+            int employeeWage = employeeHours * EMP_RATE_PER_HOUR;
+            totalEmployeeWage += employeeWage;
+            System.out.printf("%5d      %5d            %5d            %5d\n", day, employeeHours, totalWorkingHrs + employeeHours, employeeWage);
         }
-        totalEmployeeWage = totalEmployeeHours * EMP_RATE_PER_HOUR;
-        System.out.println("Total Employee Wage: " + totalEmployeeWage);
+        System.out.println("Total employee wage for a month is " + totalEmployeeWage);
+    }
+    public static void main(String[] args) {
+        totalWage();                              //Calling the method totalWage
     }
 }
