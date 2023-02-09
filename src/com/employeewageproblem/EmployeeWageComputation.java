@@ -1,7 +1,7 @@
 package com.employeewageproblem;
 /*Program to Compute Employee Wage for multiple companies by taking example*/
 public class EmployeeWageComputation {
-    public static void calculateTotalWage(String company, int wagePerHour, int maxWorkingHours, int maxWorkingDays) {
+    public static void totalWage(String company, int wagePerHour, int maxWorkingHours, int maxWorkingDays) {
         final int IS_PART_TIME = 1;
         final int IS_FULL_TIME = 2;
         //variables
@@ -37,7 +37,7 @@ public class EmployeeWageComputation {
     public static void main(String []args)
     {
         /*Calling the method and initializing the parameters*/
-        calculateTotalWage("Amazon", 40, 200, 15);
-        calculateTotalWage("Flipkart", 30, 150, 22);
+        totalWage("Amazon", 40, 200, 15);
+        totalWage("Flipkart", 30, 150, 22);
     }
 }
