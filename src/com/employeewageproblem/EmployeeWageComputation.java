@@ -1,21 +1,23 @@
 package com.employeewageproblem;
-/*Program to manage employee wage of multiple companies*/
+import java.util.LinkedList;
+/*Program to manage employee wage of multiple companies using ArrayList (UC12)*/
 public class EmployeeWageComputation implements EmployeeWageBuilder{
     public static final int PART_TIME = 1;          // class constant
     public static final int FULL_TIME = 2;
-    int companies = 0;                        // instance variables
-    private CompanyEmpWage[] companyArray;
+    private LinkedList<CompanyEmpWage> companyEmpWageList;                        // instance variables
+    //private CompanyEmpWage[] companyArray;
     public EmployeeWageComputation(int n) {                  //Constructor of same class
-        companyArray = new CompanyEmpWage[n];
+        companyEmpWageList = new LinkedList<>();
     }
     public void addCompany(String companyName, int wagePerHour, int maxWorkingDays, int maxWorkingHours) {
-        companyArray[companies] = new CompanyEmpWage(companyName, wagePerHour, maxWorkingDays, maxWorkingHours);
-        companies++;
+        CompanyEmpWage companyEmpWage = new CompanyEmpWage(companyName, wagePerHour, maxWorkingDays, maxWorkingHours);
+        companyEmpWageList.add(companyEmpWage);
     }
     public void computeEmpWage() {
-        for (int i = 0; i < companies; i++) {
-            companyArray[i].setTotalEmployeeWage(this.computeEmpWage(companyArray[i]));
-            System.out.println(companyArray[i]);
+        for (int i = 0; i < companyEmpWageList.size(); i++) {
+            CompanyEmpWage companyEmpWage = companyEmpWageList.get(i);
+            companyEmpWage.setTotalEmployeeWage(this.computeEmpWage(companyEmpWage));
+            System.out.println(companyEmpWage);
         }
     }
     public int computeEmpWage(CompanyEmpWage companyEmpWage) {           // Compute Wage method
