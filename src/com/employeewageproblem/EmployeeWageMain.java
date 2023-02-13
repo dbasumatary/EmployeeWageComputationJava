@@ -13,5 +13,8 @@ public class EmployeeWageMain {
             empWageBuilder.addCompany(scanner.next(), scanner.nextInt(), scanner.nextInt(), scanner.nextInt());
         }
         empWageBuilder.computeEmpWage();                 // Method calling
+        System.out.println("Enter the company name: ");
+        /*The total wage will be shown after being asked to enter the company name*/
+        System.out.println("The total employee wage is " + empWageBuilder.getTotalWage(scanner.next()));
     }
 }
